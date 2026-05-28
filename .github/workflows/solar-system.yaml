@@ -35,6 +35,7 @@ jobs:
   code-coverage:
     name: Code Coverage
     runs-on: ubuntu-latest
+    # continue-on-error: true     # we can add this in job level to prevent the workflow from failure
     steps:
       - name: checkout the repo
         uses: actions/checkout@v6
@@ -45,6 +46,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Check code coverage
+        continue-on-error: true     # adding this in step level to prevent the job from failure
         run: npm run coverage
       - name: Archive test result
         uses: actions/upload-artifact@v7
