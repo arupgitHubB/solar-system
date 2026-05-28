@@ -28,7 +28,10 @@ jobs:
         id: unit-test-id        # giving this step an unique name
         run: npm test
       - name: Archive test result
+        # if: ${{ steps.unit-test-id.outcome == 'failure' || steps.unit-test-id.outcome == 'success' }}
         if: ${{ failure() && steps.unit-test-id.outcome == 'failure' || steps.unit-test-id.outcome == 'success' }}
+        # if: ${{ always()}}      # this step should always run
+
         uses: actions/upload-artifact@v7
         with:
           name: Unit-test-result
