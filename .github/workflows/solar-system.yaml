@@ -25,8 +25,10 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Unit testing
+        id: unit-test-id        # giving this step an unique name
         run: npm test
       - name: Archive test result
+        if: ${{ steps.unit-test-id.outcome == 'failure' || steps.unit-test-id.outcome == 'success' }}
         uses: actions/upload-artifact@v7
         with:
           name: Unit-test-result
