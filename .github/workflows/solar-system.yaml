@@ -29,8 +29,8 @@ jobs:
         run: npm test
       - name: Archive test result
         # if: ${{ steps.unit-test-id.outcome == 'failure' || steps.unit-test-id.outcome == 'success' }}
-        if: ${{ failure() && (steps.unit-test-id.outcome == 'failure' || steps.unit-test-id.outcome == 'success') }}
-        # if: ${{ always()}}      # this step should always run
+        # if: ${{ failure() && (steps.unit-test-id.outcome == 'failure' || steps.unit-test-id.outcome == 'success') }}    # it will skip the step if the previous step is success.
+        if: ${{ always()}}      # this step should always run
 
         uses: actions/upload-artifact@v7
         with:
