@@ -26,4 +26,9 @@ jobs:
         run: npm install
       - name: Unit testing
         run: npm test
+      - name: Archive test result
+        uses: actions/upload-artifact@v7
+        with:
+          name: Unit-test-result
+          path: test-results.xml
             
