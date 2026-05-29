@@ -14,6 +14,15 @@ env:
 jobs:
   unit-testing:
     name: Unit Testing
+    services:
+      mongodb:
+        image: siddharth67/mongo-db:non-prod
+        ports:
+          - 27017:27017
+    env:                      # job level env to override workflow level env
+      MONGO_URI: 'mongodb://localhost:27017/superData'
+      MONGO_USERNAME: non-prod-user       # hardcoding the values for demo. 
+      MONGO_PASSWORD: non-prod-password   # should be stored in repository variables/secrets
     runs-on: ubuntu-latest
     steps:
       - name: checkout the repo
