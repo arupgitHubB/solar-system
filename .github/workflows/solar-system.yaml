@@ -73,7 +73,7 @@ jobs:
   docker:
     name: Containerization
     runs-on: ubuntu-latest
-    permissions:
+    permissions:            # adding permissions for the github token
       packages: write
     needs:
       - unit-testing
@@ -128,3 +128,4 @@ jobs:
           tags: |
             ${{ vars.DOCKERHUB_REPO }}/solar-system:${{ github.sha }}
             ghcr.io/arupgithubb/solar-system:${{ github.sha }}
+
