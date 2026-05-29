@@ -109,3 +109,10 @@ jobs:
               export IP=$(docker inspect -f '{{.NetworkSettings.Networks.bridge.IPAddress}}' solar-system-app)
               echo $IP
               wget -q -O - 127.0.0.1:3000/live | grep live
+
+      - name: Docker push to dockerhub registry
+        uses: docker/build-push-action@v7
+        with:
+          context: "."
+          push: true
+          tags: ${{ vars.DOCKERHUB_REPO }}/solar-system:${{ github.sha }}
