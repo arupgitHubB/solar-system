@@ -108,4 +108,4 @@ jobs:
               # export IP=$(docker inspect -f '{{ range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' solar-system-app)
               export IP=$(docker inspect -f '{{.NetworkSettings.Networks.bridge.IPAddress}}' solar-system-app)
               echo $IP
-              wget -q -O - 127.0.0.1/live | grep live
+              wget -q -O - 127.0.0.1:3000/live | grep live
