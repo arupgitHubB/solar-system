@@ -122,6 +122,7 @@ jobs:
         with:
           context: "."
           push: true
+          # To push to dockerhub and to ghcr
           tags: |
-            ${{ vars.DOCKERHUB_REPO }}/solar-system:${{ github.sha }}               # To push to dockerhub
-            ghcr.io/${{ github.repository_owner }}/solar-system:${{ github.sha }}   # to push to ghcr
+            ${{ vars.DOCKERHUB_REPO }}/solar-system:${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/solar-system:${{ github.sha }}
