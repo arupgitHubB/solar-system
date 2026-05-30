@@ -159,6 +159,20 @@ jobs:
         uses: azure/setup-kubectl@v4
         with:
           version: 'v1.34.0'
+
+      # - name: setup kubeconfig file
+      #   uses: azure/k8s-set-context@v5
+      #   with:
+      #     method: kubeconfig
+      #     kubeconfig: ${{ secrets.KUBECONFIG_FILE }}
+      #     # context: <context name>    # current-context from kubeconfig is used as default
+
+      - name: setup kubeconfig file     # Here we are setting up
+        run: |                          # kubeconfig by ourselves
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG_FILE }}" > ~/.kube/config
+          chmod 600 ~/.kube/config
+
       - name: Fetch k8s cluster details
         run: |
           kubectl version
