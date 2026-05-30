@@ -55,13 +55,24 @@ jobs:
     name: Code Coverage
     runs-on: ubuntu-latest
     # continue-on-error: true     # we can add this in job level to prevent the workflow from failure
+    container:
+      image: node:18
+    services:
+      mongo-db:
+        image: siddharth67/mongo-db:non-prod
+        # options: 
+        #   -- name mongo
+    env:
+      MONGO_URI: 'mongodb://mongo-db:27017/superData'
+      MONGO_USERNAME: non-prod-user       # hardcoding the values for demo. 
+      MONGO_PASSWORD: non-prod-password 
     steps:
       - name: checkout the repo
         uses: actions/checkout@v6
-      - name: Setup NodeJS version - 18
-        uses: actions/setup-node@v6
-        with:
-          node-version: '18'
+      # - name: Setup NodeJS version - 18         # as we are using 
+      #   uses: actions/setup-node@v6             # job container 
+      #   with:                                   # of node:18
+      #     node-version: '18'
       - name: Cache dependencies        ## Cache dependencies 
         uses: actions/cache@v5
         with:
